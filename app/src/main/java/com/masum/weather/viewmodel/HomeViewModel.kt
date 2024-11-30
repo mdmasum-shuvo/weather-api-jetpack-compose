@@ -32,7 +32,7 @@ class HomeViewModel(
         get() = _selectedLocationName
 
 
-    var isBackFromSearch = true
+    private var isBackFromSearch = true
 
     fun fetchAllCategory(lat: Double, lng: Double) {
         _selectedLocation.value = LatAndLong(lat, lng)
