@@ -1,0 +1,84 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    id 'kotlinx-serialization'
+}
+
+android {
+    namespace 'com.masum.network'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 26
+        buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"" + getBaseUrl() + "\""
+        )
+
+        buildConfigField(
+                "String",
+                "API_KEY",
+                "\"" + getWeatherApiKey() + "\""
+        )
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+def getBaseUrl() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String api_key = properties.getProperty("base_url")
+
+    if (api_key == null)
+        throw new GradleException("")
+
+    return api_key
+}
+
+def getWeatherApiKey() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String api_key = properties.getProperty("weather_api_key")
+
+    if (api_key == null)
+        throw new GradleException("")
+
+    return api_key
+}
+
+dependencies {
+
+    implementation platform(libs.ktor.bom)
+    implementation libs.ktor.client.android
+    implementation libs.ktor.client.serialization
+    implementation libs.ktor.client.logging
+    implementation libs.ktor.client.content.negotiation
+    implementation libs.ktor.serialization.kotlinx.json
+    testImplementation libs.ktor.client.mock
+
+    // koin
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.androidx.compose.navigation)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
+
+}
