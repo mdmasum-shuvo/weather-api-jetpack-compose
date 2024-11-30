@@ -33,11 +33,7 @@ import com.masum.weather.ui.theme.Purple40
 import com.masum.weather.ui.theme.light_gray
 import com.masum.weather.ui.theme.text_gray
 import com.masum.weather.ui.theme.white_color
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.MapProperties
-import com.google.maps.android.compose.MapUiSettings
-import com.google.maps.android.compose.rememberCameraPositionState
+
 
 
 @Composable
@@ -48,29 +44,9 @@ fun LocationFieldWithIcon(
     color: Color = Color.Black,
     placeholder: String = "Latitude, Longitude",
     isBorderEnable: Boolean = true,
-    onLocationSelected: (LatLng, Boolean) -> Unit
+    onLocationSelected: (lat:Double,lng:Double, Boolean) -> Unit
 ) {
-    // Set properties using MapProperties which you can use to recompose the map
-    val mapProperties by remember {
-        mutableStateOf(
-            MapProperties(maxZoomPreference = 20f, minZoomPreference = 5f)
-        )
-    }
 
-
-    val mapUiSettings by remember {
-        mutableStateOf(
-            MapUiSettings(
-                compassEnabled = false, mapToolbarEnabled = false, zoomControlsEnabled = false
-            )
-        )
-    }
-
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(
-            LatLng(latitude.value.toDouble(), longitude.value.toDouble()), 15f
-        )  // Center point of Dhaka for initial MapView
-    }
 
     val isLocationClicked = remember { mutableStateOf(true) }
     val isLocationButtonClicked = remember { mutableStateOf(false) }
@@ -92,17 +68,13 @@ fun LocationFieldWithIcon(
             latitude.value = currentLatLon.value.latitude.toString()
             longitude.value = currentLatLon.value.longitude.toString()
             onLocationSelected(
-                LatLng(latitude.value.toDouble(), longitude.value.toDouble()),
+              latitude.value.toDouble(), longitude.value.toDouble(),
                 isLocationButtonClicked.value
             )
             // update camera position of marker
 
         }
-        cameraPositionState.position = CameraPosition.fromLatLngZoom(
-            LatLng(
-                latitude.value.toDouble(),  longitude.value.toDouble()
-            ), 15f
-        )
+
     }
 
     Column {

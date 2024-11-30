@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.masum.network.data_object_model.WeatherDto
 import com.masum.network.remote_data.repository.GetAllCategoryApiUseCase
-import com.google.android.gms.maps.model.LatLng
+import com.masum.weather.location.LatAndLong
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -21,21 +21,21 @@ class HomeViewModel(
     val categoryList: LiveData<WeatherDto>
         get() = _categoryList
 
-    private var _selectedLocation: MutableLiveData<LatLng> = MutableLiveData()
+    private var _selectedLocation: MutableLiveData<LatAndLong> = MutableLiveData()
 
-    private val selectedLocation: LiveData<LatLng>
+    private val selectedLocation: LiveData<LatAndLong>
         get() = _selectedLocation
 
     private var _selectedLocationName: MutableLiveData<String> = MutableLiveData()
 
-     val selectedLocationName: LiveData<String>
+    val selectedLocationName: LiveData<String>
         get() = _selectedLocationName
 
 
-    var isBackFromSearch=true
+    var isBackFromSearch = true
 
-    fun fetchAllCategory(latLng: LatLng) {
-        _selectedLocation.value = latLng
+    fun fetchAllCategory(lat: Double, lng: Double) {
+        _selectedLocation.value = LatAndLong(lat, lng)
         viewModelScope.launch {
             val categoryUseCase = categoryUseCase(
                 selectedLocation.value?.latitude!!,
@@ -44,7 +44,7 @@ class HomeViewModel(
 
             categoryUseCase.onSuccess {
                 _categoryList.value = it
-               isBackFromSearch = false
+                isBackFromSearch = false
             }
 
 

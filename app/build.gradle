@@ -92,9 +92,7 @@ dependencies {
     implementation libs.retrofit2.kotlin.coroutines.adapter
 
     implementation libs.koin.android
-    // Google Maps Compose View
-    implementation libs.maps.compose
-
+    
     // Location
     implementation libs.play.services.location
 

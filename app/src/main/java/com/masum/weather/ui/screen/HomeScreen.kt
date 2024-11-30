@@ -35,7 +35,6 @@ import com.masum.weather.ui.theme.white_color
 import com.masum.weather.viewmodel.HomeViewModel
 import com.masum.network.asset_data.zilla_data.Location
 import com.masum.network.util.WeatherUtils
-import com.google.android.gms.maps.model.LatLng
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -57,7 +56,7 @@ fun HomeScreen(
         if (location != null && location.coord?.lat != null && location.coord?.lon != null) {
             latitude.value=location.coord?.lat.toString()
             longitude.value=location.coord?.lon.toString()
-            homeViewModel.fetchAllCategory(LatLng(location.coord?.lat!!, location.coord?.lon!!))
+            homeViewModel.fetchAllCategory(location.coord?.lat!!, location.coord?.lon!!)
             homeViewModel.setLocationName(location.name ?: "")
         }
     }
@@ -82,14 +81,14 @@ fun HomeScreen(
         ) {
             Row {
                 LocationFieldWithIcon(
-                    title = "Selected Location", latitude = latitude,longitude=longitude, onLocationSelected = { latLng, isClicked ->
+                    title = "Selected Location", latitude = latitude,longitude=longitude, onLocationSelected = { lat,lng, isClicked ->
                         if (isClicked || location == null) {
-                            homeViewModel.fetchAllCategory(latLng)
+                            homeViewModel.fetchAllCategory(lat,lng)
                             homeViewModel.setLocationName(
                                 WeatherUtils.getAddressFromLatLong(
                                     context,
-                                    latLng.latitude,
-                                    longitude = latLng.longitude
+                                    latitude = lat,
+                                    longitude = lng
                                 )
                             )
                         }
