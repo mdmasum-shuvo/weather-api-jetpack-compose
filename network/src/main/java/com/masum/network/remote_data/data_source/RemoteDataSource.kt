@@ -1,4 +1,4 @@
-package com.masum.network.remote_data
+package com.masum.network.remote_data.data_source
 
 import com.masum.network.BuildConfig
 import io.ktor.client.HttpClient
@@ -9,7 +9,7 @@ import io.ktor.client.statement.HttpResponse
 
 class RemoteDataSource(private val client: HttpClient) {
 
-    suspend fun getCategoryDataList(lat: Double, lng: Double): HttpResponse =
+    suspend fun getWeatherData(lat: Double, lng: Double): HttpResponse =
         client.get {
             url(HttpParam.WEATHER)
             parameter(HttpParam.LATITUDE, lat)

@@ -3,23 +3,21 @@ package com.masum.weather.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.masum.network.data_object_model.WeatherDto
-import com.masum.network.remote_data.repository.GetAllCategoryApiUseCase
+import com.masum.network.remote_data.api_use_case.WeatherApiUseCase
 import com.masum.weather.location.LatAndLong
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val categoryUseCase: GetAllCategoryApiUseCase,
-    savedStateHandle: SavedStateHandle
+    private val weatherApiUseCase: WeatherApiUseCase,
 ) : ViewModel() {
 
-    private var _categoryList: MutableLiveData<WeatherDto> = MutableLiveData()
+    private var _weatherData: MutableLiveData<WeatherDto> = MutableLiveData()
 
-    val categoryList: LiveData<WeatherDto>
-        get() = _categoryList
+    val weatherData: LiveData<WeatherDto>
+        get() = _weatherData
 
     private var _selectedLocation: MutableLiveData<LatAndLong> = MutableLiveData()
 
@@ -34,21 +32,21 @@ class HomeViewModel(
 
     private var isBackFromSearch = true
 
-    fun fetchAllCategory(lat: Double, lng: Double) {
+    fun fetchWeatherData(lat: Double, lng: Double) {
         _selectedLocation.value = LatAndLong(lat, lng)
         viewModelScope.launch {
-            val categoryUseCase = categoryUseCase(
+            val weatherApiUseCase = weatherApiUseCase(
                 selectedLocation.value?.latitude!!,
                 selectedLocation.value?.longitude!!
             )
 
-            categoryUseCase.onSuccess {
-                _categoryList.value = it
+            weatherApiUseCase.onSuccess {
+                _weatherData.value = it
                 isBackFromSearch = false
             }
 
 
-            categoryUseCase.onFailure {
+            weatherApiUseCase.onFailure {
                 Log.e("", "")
 
             }

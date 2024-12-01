@@ -56,7 +56,7 @@ fun HomeScreen(
         if (location != null && location.coord?.lat != null && location.coord?.lon != null) {
             latitude.value=location.coord?.lat.toString()
             longitude.value=location.coord?.lon.toString()
-            homeViewModel.fetchAllCategory(location.coord?.lat!!, location.coord?.lon!!)
+            homeViewModel.fetchWeatherData(location.coord?.lat!!, location.coord?.lon!!)
             homeViewModel.setLocationName(location.name ?: "")
         }
     }
@@ -83,7 +83,7 @@ fun HomeScreen(
                 LocationFieldWithIcon(
                     title = "Selected Location", latitude = latitude,longitude=longitude, onLocationSelected = { lat,lng, isClicked ->
                         if (isClicked || location == null) {
-                            homeViewModel.fetchAllCategory(lat,lng)
+                            homeViewModel.fetchWeatherData(lat,lng)
                             homeViewModel.setLocationName(
                                 WeatherUtils.getAddressFromLatLong(
                                     context,
@@ -97,7 +97,7 @@ fun HomeScreen(
                 )
             }
             Spacer16DPH()
-            homeViewModel.categoryList.observeAsState().value?.let { data ->
+            homeViewModel.weatherData.observeAsState().value?.let { data ->
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier.fillMaxWidth()
