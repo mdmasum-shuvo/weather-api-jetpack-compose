@@ -30,6 +30,14 @@
   <li>Users can navigate back to the main weather screen from the search screen.</li>
   <li>Preserves the selected location and displays the weather for that location.</li>
 </ul>
+   <h3>Configuration Change Management</h3>
+    <ul>
+      <li>Handles configuration changes, such as screen rotation, without losing data or state.</li>
+      <li>Uses <b>ViewModel</b> to retain UI-related data across configuration changes.</li>
+      <li>Leverages <b>Jetpack Compose's</b> declarative UI to automatically recompose views as needed.</li>
+    </ul>
+
+ 
 
 <h2>🚀 Technologies Used</h2>
 <p>This app is built using modern Android development tools and practices:</p>
