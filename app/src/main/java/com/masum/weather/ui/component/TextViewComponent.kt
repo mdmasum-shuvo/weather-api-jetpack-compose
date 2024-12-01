@@ -28,7 +28,8 @@ fun TextView68_W700(
         color = color,
         style = TextStyle(
             fontWeight = FontWeight.W700,
-            fontSize = 68.sp).plus(style),
+            fontSize = 68.sp
+        ).plus(style),
         textAlign = textAlign,
         overflow = overflow,
         textDecoration = textDecoration
@@ -39,7 +40,7 @@ fun TextView68_W700(
 fun TextView12_W700(
     modifier: Modifier = Modifier,
     value: String,
-    color: Color =Color.Black,
+    color: Color = Color.Black,
     textAlign: TextAlign = TextAlign.Start,
     textDecoration: TextDecoration = TextDecoration.None,
     overflow: TextOverflow = TextOverflow.Visible,
@@ -51,7 +52,8 @@ fun TextView12_W700(
         color = color,
         style = TextStyle(
             fontWeight = FontWeight.W700,
-            fontSize = 12.sp).plus(style),
+            fontSize = 12.sp
+        ).plus(style),
         textAlign = textAlign,
         overflow = overflow,
         textDecoration = textDecoration
@@ -74,7 +76,8 @@ fun TextView16_W600(
         color = color,
         style = TextStyle(
             fontWeight = FontWeight.W600,
-            fontSize = 16.sp).plus(style),
+            fontSize = 16.sp
+        ).plus(style),
         textAlign = textAlign,
         overflow = overflow,
         textDecoration = textDecoration
@@ -85,7 +88,7 @@ fun TextView16_W600(
 fun TextView16_W400(
     modifier: Modifier = Modifier,
     value: String,
-    color: Color =Color.Black,
+    color: Color = Color.Black,
     textAlign: TextAlign = TextAlign.Start,
     textDecoration: TextDecoration = TextDecoration.None,
     overflow: TextOverflow = TextOverflow.Visible,
@@ -97,7 +100,8 @@ fun TextView16_W400(
         color = color,
         style = TextStyle(
             fontWeight = FontWeight.W400,
-            fontSize = 16.sp).plus(style),
+            fontSize = 16.sp
+        ).plus(style),
         textAlign = textAlign,
         overflow = overflow,
         textDecoration = textDecoration
@@ -108,7 +112,7 @@ fun TextView16_W400(
 fun TextView24_W500(
     modifier: Modifier = Modifier,
     value: String,
-    color: Color =Color.Black,
+    color: Color = Color.Black,
     textAlign: TextAlign = TextAlign.Start,
     textDecoration: TextDecoration = TextDecoration.None,
     overflow: TextOverflow = TextOverflow.Visible,
@@ -120,7 +124,8 @@ fun TextView24_W500(
         color = color,
         style = TextStyle(
             fontWeight = FontWeight.W500,
-            fontSize = 24.sp).plus(style),
+            fontSize = 24.sp
+        ).plus(style),
         textAlign = textAlign,
         overflow = overflow,
         textDecoration = textDecoration

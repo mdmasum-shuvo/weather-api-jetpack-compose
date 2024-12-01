@@ -9,10 +9,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 class RemoteRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource,
-    private val ioDispatcher: CoroutineDispatcher
-) :
-    NetworkDataRepository {
+    private val remoteDataSource: RemoteDataSource, private val ioDispatcher: CoroutineDispatcher
+) : NetworkDataRepository {
     override suspend fun getWeatherData(lat: Double, lng: Double): Result<WeatherDto> =
         withContext(ioDispatcher) {
             runCatching {

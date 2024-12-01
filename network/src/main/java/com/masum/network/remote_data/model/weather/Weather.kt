@@ -6,12 +6,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Weather(
-     @SerialName("description")
+    @SerialName("description")
     val description: String?,
-     @SerialName("icon")
+    @SerialName("icon")
     val icon: String?,
-     @SerialName("id")
+    @SerialName("id")
     val id: Int?,
-     @SerialName("main")
+    @SerialName("main")
     val main: String?
 )

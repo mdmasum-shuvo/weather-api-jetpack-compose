@@ -12,7 +12,7 @@ import coil.request.ImageRequest
 
 @Composable
 fun ImageNormal(
-    iconUrl:String
+    iconUrl: String
 ) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)

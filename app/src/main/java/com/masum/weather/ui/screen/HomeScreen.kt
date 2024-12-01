@@ -35,6 +35,7 @@ import com.masum.weather.ui.component.Spacer16DPH
 import com.masum.weather.ui.component.TextView16_W400
 import com.masum.weather.ui.component.TextView24_W500
 import com.masum.weather.ui.component.TextView68_W700
+import com.masum.weather.ui.component.gradientColor
 import com.masum.weather.ui.theme.Purple40
 import com.masum.weather.ui.theme.Purple80
 import com.masum.weather.ui.theme.white_color
@@ -86,11 +87,7 @@ fun HomeScreen(
         Modifier
             .fillMaxSize()
             .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Purple40, Purple80
-                    )
-                )
+                brush = gradientColor()
             )
     ) {
         Column(
@@ -154,7 +151,10 @@ fun HomeScreen(
             Button(onClick = {
                 navController.navigate(com.masum.weather.route.SearchScreen)
             }) {
-                TextView16_W400(value = context.getString(R.string.search_location), color = white_color)
+                TextView16_W400(
+                    value = context.getString(R.string.search_location),
+                    color = white_color
+                )
             }
         }
     }
@@ -165,7 +165,7 @@ fun WeatherData(homeViewModel: HomeViewModel, data: WeatherDto) {
     Row(
         horizontalArrangement = Arrangement.Center,
 
-    ) {
+        ) {
         Icon(Icons.Default.LocationOn, contentDescription = "Icon", tint = white_color)
         TextView24_W500(
             value = homeViewModel.selectedLocationName.observeAsState().value ?: "",

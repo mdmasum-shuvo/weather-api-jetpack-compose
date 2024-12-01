@@ -8,11 +8,12 @@ import com.masum.network.asset_data.zilla_data.Location
 import com.masum.network.util.WeatherUtils
 import kotlinx.serialization.json.Json
 
-class SearchViewModel (context:Context) : ViewModel() {
+class SearchViewModel(context: Context) : ViewModel() {
 
     private val _locationList: MutableLiveData<List<Location>> = MutableLiveData(emptyList())
 
-    private val _filteredLocationList: MutableLiveData<List<Location>> = MutableLiveData(emptyList())
+    private val _filteredLocationList: MutableLiveData<List<Location>> =
+        MutableLiveData(emptyList())
     val filteredLocationList: LiveData<List<Location>> get() = _filteredLocationList
 
     init {

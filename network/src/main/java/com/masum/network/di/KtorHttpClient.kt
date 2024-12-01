@@ -29,7 +29,7 @@ class KtorHttpClient {
             contentType(ContentType.Application.Json)
             accept(ContentType.Application.Json)
         }
-        
+
         install(ContentNegotiation) {
             json(
                 Json {

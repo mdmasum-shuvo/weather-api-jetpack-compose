@@ -30,11 +30,11 @@ class MainActivity : ComponentActivity() {
                     Column(modifier = Modifier.padding(innerPadding)) {
                         NavHost(
                             navController = navController,
-                            startDestination =com.masum.weather.route.HomeScreen
+                            startDestination = com.masum.weather.route.HomeScreen
                         ) {
-                            composable(com.masum.weather.route.HomeScreen){backStackEntry->
-                               val data= backStackEntry.savedStateHandle.get<String>(SELECTED_KEY)
-                                val location= data?.let { Json.decodeFromString<Location>(it) }
+                            composable(com.masum.weather.route.HomeScreen) { backStackEntry ->
+                                val data = backStackEntry.savedStateHandle.get<String>(SELECTED_KEY)
+                                val location = data?.let { Json.decodeFromString<Location>(it) }
                                 HomeScreen(navController = navController, location = location)
                             }
 

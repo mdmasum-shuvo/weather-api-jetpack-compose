@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,7 +29,9 @@ fun SearchScreen(searchViewModel: SearchViewModel = koinViewModel(), navControll
     val context = LocalContext.current
 
     Surface(color = light_gray) {
-        Column(modifier = Modifier.padding(16.dp).fillMaxSize()) {
+        Column(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()) {
             TextFieldWithBorder(
                 placeholder = context.getString(R.string.search),
                 onValueChanged = { value ->
@@ -45,7 +46,10 @@ fun SearchScreen(searchViewModel: SearchViewModel = koinViewModel(), navControll
                         key = { item -> item.id ?: 0 }) { item ->
                         ZilaItem(item.name) {
                             navController.popBackStack()
-                            navController.currentBackStackEntry?.savedStateHandle?.set(SELECTED_KEY, Json.encodeToString(item))
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                SELECTED_KEY,
+                                Json.encodeToString(item)
+                            )
                         }
                         Spacer8DPH()
                     }

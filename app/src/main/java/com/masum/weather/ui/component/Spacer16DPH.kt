@@ -12,10 +12,6 @@ fun Spacer16DPH() {
     Spacer(modifier = Modifier.height(16.dp))
 }
 
-@Composable
-fun Spacer12DPH() {
-    Spacer(modifier = Modifier.height(12.dp))
-}
 
 @Composable
 fun Spacer8DPH() {

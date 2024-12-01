@@ -73,7 +73,7 @@ fun BasicTextField(
     onValueChanged: ((String) -> Unit)? = null,
     onClick: ((Boolean) -> Unit)? = null,
 ) {
-    val inputValue= rememberSaveable  { mutableStateOf("") }
+    val inputValue = rememberSaveable { mutableStateOf("") }
 
     val addSpace = "          "
     val showKeyboard = remember { mutableStateOf(isKeyboardShown) }
@@ -112,13 +112,12 @@ fun BasicTextField(
             readOnly = readOnly,
             onValueChange = { newText ->
                 if (inputType == KeyboardType.Number) {
-                    if(newText.isEmpty()){
+                    if (newText.isEmpty()) {
                         inputValue.value = newText
                         if (onValueChanged != null) {
                             onValueChanged(newText)
                         }
-                    }
-                   else if (!newText.contains(",") && newText.first() != '.') {
+                    } else if (!newText.contains(",") && newText.first() != '.') {
                         inputValue.value = newText
                         if (onValueChanged != null) {
                             onValueChanged(newText)

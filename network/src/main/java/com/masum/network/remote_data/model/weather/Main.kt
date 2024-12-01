@@ -1,26 +1,25 @@
 package com.masum.network.remote_data.model.weather
 
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Main(
-     @SerialName("feels_like")
+    @SerialName("feels_like")
     val feelsLike: Double?,
-     @SerialName("grnd_level")
+    @SerialName("grnd_level")
     val grndLevel: Int?,
-     @SerialName("humidity")
+    @SerialName("humidity")
     val humidity: Int?,
-     @SerialName("pressure")
+    @SerialName("pressure")
     val pressure: Int?,
-     @SerialName("sea_level")
+    @SerialName("sea_level")
     val seaLevel: Int?,
-     @SerialName("temp")
+    @SerialName("temp")
     val temp: Double?,
-     @SerialName("temp_max")
+    @SerialName("temp_max")
     val tempMax: Double?,
-     @SerialName("temp_min")
+    @SerialName("temp_min")
     val tempMin: Double?
 )

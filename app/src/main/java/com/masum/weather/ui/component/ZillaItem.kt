@@ -13,18 +13,19 @@ import androidx.compose.ui.unit.dp
 import com.masum.weather.ui.theme.white_color
 
 @Composable
-fun ZilaItem(zilaName: String?, onItemClicked: ()-> Unit) {
+fun ZilaItem(zilaName: String?, onItemClicked: () -> Unit) {
     Card(
-        modifier = Modifier.clickable {
-            onItemClicked()
-        }
+        modifier = Modifier
+            .clickable {
+                onItemClicked()
+            }
             .fillMaxWidth()
             .wrapContentHeight(), shape = RoundedCornerShape(5.dp),
         colors = CardDefaults.cardColors(containerColor = white_color)
 
     ) {
 
-        TextView16_W600(value = zilaName ?: "---", modifier =Modifier.padding(16.dp))
+        TextView16_W600(value = zilaName ?: "---", modifier = Modifier.padding(16.dp))
 
     }
 }

@@ -42,7 +42,7 @@ fun LocationFieldWithIcon(
     color: Color = Color.Black,
     placeholder: String = "Latitude, Longitude",
     isBorderEnable: Boolean = true,
-    onLocationSelected: (lat:Double,lng:Double, Boolean) -> Unit
+    onLocationSelected: (lat: Double, lng: Double, Boolean) -> Unit
 ) {
 
 
@@ -66,10 +66,10 @@ fun LocationFieldWithIcon(
             latitude.value = currentLatLon.value.latitude.toString()
             longitude.value = currentLatLon.value.longitude.toString()
             onLocationSelected(
-              latitude.value.toDouble(), longitude.value.toDouble(),
+                latitude.value.toDouble(), longitude.value.toDouble(),
                 isLocationButtonClicked.value
             )
-            isLocationClicked.value=false
+            isLocationClicked.value = false
             // update camera position of marker
 
         }

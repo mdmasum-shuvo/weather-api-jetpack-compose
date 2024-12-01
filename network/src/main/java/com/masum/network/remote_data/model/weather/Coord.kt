@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Coord(
-     @SerialName("lat")
+    @SerialName("lat")
     val lat: Double?,
-     @SerialName("lon")
+    @SerialName("lon")
     val lon: Double?
 )
