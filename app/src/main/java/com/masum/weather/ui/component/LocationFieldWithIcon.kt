@@ -16,7 +16,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -33,7 +32,6 @@ import com.masum.weather.ui.theme.Purple40
 import com.masum.weather.ui.theme.light_gray
 import com.masum.weather.ui.theme.text_gray
 import com.masum.weather.ui.theme.white_color
-
 
 
 @Composable
