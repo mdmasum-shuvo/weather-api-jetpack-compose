@@ -44,12 +44,8 @@ fun SearchScreen(searchViewModel: SearchViewModel = koinViewModel(), navControll
                         dataList,
                         key = { item -> item.id ?: 0 }) { item ->
                         ZilaItem(item.name) {
-                            // Pass the result back to HomeScreen using savedStateHandle
                             navController.popBackStack()
                             navController.currentBackStackEntry?.savedStateHandle?.set(SELECTED_KEY, Json.encodeToString(item))
-
-                            // Navigate back to HomeScreen
-                           // navController.navigateUp()
                         }
                         Spacer8DPH()
                     }
