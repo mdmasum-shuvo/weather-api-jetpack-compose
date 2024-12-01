@@ -1,6 +1,7 @@
 package com.masum.weather.ui.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,12 +29,8 @@ import org.koin.androidx.compose.koinViewModel
 fun SearchScreen(searchViewModel: SearchViewModel = koinViewModel(), navController: NavController) {
     val context = LocalContext.current
 
-    LaunchedEffect(true) {
-
-    }
-
     Surface(color = light_gray) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp).fillMaxSize()) {
             TextFieldWithBorder(
                 placeholder = context.getString(R.string.search),
                 onValueChanged = { value ->
