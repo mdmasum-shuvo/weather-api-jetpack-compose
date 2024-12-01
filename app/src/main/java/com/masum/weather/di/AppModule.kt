@@ -6,5 +6,5 @@ import com.masum.network.di.remoteRepositoryModule
 import org.koin.dsl.module
 
 val appModule = module {
-    includes(remoteDataSourceModule,dispatchersModule, remoteRepositoryModule, viewModelModule)
+    includes(remoteDataSourceModule, dispatchersModule, remoteRepositoryModule, viewModelModule)
 }

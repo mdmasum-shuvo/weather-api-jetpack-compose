@@ -3,7 +3,8 @@ package com.masum.network.util
 import android.content.Context
 import android.location.Geocoder
 import java.util.Locale
-
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 object WeatherUtils {
 
     fun kelvinToCelsius(temp: Double): Double {
@@ -33,6 +34,20 @@ object WeatherUtils {
         } catch (e: Exception) {
             e.printStackTrace()
             "Unable to fetch address"
+        }
+    }
+
+
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return when {
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
         }
     }
 }

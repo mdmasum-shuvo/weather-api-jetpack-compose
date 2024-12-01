@@ -21,6 +21,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 
 lateinit var locationCallback: LocationCallback
+
 //The main entry point for interacting with the Fused Location Provider
 lateinit var locationProvider: FusedLocationProviderClient
 
@@ -78,8 +79,15 @@ fun getUserLocation(context: Context): MutableState<LatAndLong> {
 
             }
         }
-        if (ContextCompat.checkSelfPermission( context, android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission( context, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                context,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                context,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             locationUpdate()
         }
 
@@ -119,7 +127,11 @@ fun locationUpdate() {
             .setMaxUpdateDelayMillis(15000)
             .build()
         //use FusedLocationProviderClient to request location update
-        locationProvider.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
+        locationProvider.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.getMainLooper()
+        )
     }
 }
 

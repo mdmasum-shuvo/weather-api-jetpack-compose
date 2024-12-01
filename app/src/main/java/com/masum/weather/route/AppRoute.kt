@@ -1,10 +1,7 @@
 package com.masum.weather.route
 
-import kotlinx.serialization.Serializable
 
-@Serializable
-data object HomeScreen
-@Serializable
-data object SearchScreen
 
 const val  SELECTED_KEY="selectedLocation"
+const val  HomeScreen="HomeScreen"
+const val  SearchScreen="SearchScreen"

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Ktor</string>
     <string name="search">Search Location here</string>
+    <string name="no_internet">No Internet available!</string>
 </resources>

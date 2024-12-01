@@ -71,6 +71,7 @@ fun LocationFieldWithIcon(
               latitude.value.toDouble(), longitude.value.toDouble(),
                 isLocationButtonClicked.value
             )
+            isLocationClicked.value=false
             // update camera position of marker
 
         }

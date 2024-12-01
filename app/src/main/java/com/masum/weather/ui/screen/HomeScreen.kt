@@ -35,6 +35,7 @@ import com.masum.weather.ui.theme.white_color
 import com.masum.weather.viewmodel.HomeViewModel
 import com.masum.network.asset_data.zilla_data.Location
 import com.masum.network.util.WeatherUtils
+import com.masum.weather.utils.AppUtils.showToast
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -44,7 +45,7 @@ fun HomeScreen(
     location: Location?
 ) {
     val context = LocalContext.current
-   // 23.8103, 90.4125
+    // 23.8103, 90.4125
     val latitude = remember {
         mutableStateOf("0")
     }
@@ -52,10 +53,18 @@ fun HomeScreen(
     val longitude = remember {
         mutableStateOf("0")
     }
+
+    val uiState = homeViewModel.uiState.observeAsState().value
+
+    LaunchedEffect(key1 = uiState?.error) {
+        if (!uiState?.error.isNullOrBlank()) {
+            context.showToast(uiState?.error ?: "")
+        }
+    }
     LaunchedEffect(location) {
         if (location != null && location.coord?.lat != null && location.coord?.lon != null) {
-            latitude.value=location.coord?.lat.toString()
-            longitude.value=location.coord?.lon.toString()
+            latitude.value = location.coord?.lat.toString()
+            longitude.value = location.coord?.lon.toString()
             homeViewModel.fetchWeatherData(location.coord?.lat!!, location.coord?.lon!!)
             homeViewModel.setLocationName(location.name ?: "")
         }
@@ -81,9 +90,12 @@ fun HomeScreen(
         ) {
             Row {
                 LocationFieldWithIcon(
-                    title = "Selected Location", latitude = latitude,longitude=longitude, onLocationSelected = { lat,lng, isClicked ->
+                    title = "Selected Location",
+                    latitude = latitude,
+                    longitude = longitude,
+                    onLocationSelected = { lat, lng, isClicked ->
                         if (isClicked || location == null) {
-                            homeViewModel.fetchWeatherData(lat,lng)
+                            homeViewModel.fetchWeatherData(lat, lng)
                             homeViewModel.setLocationName(
                                 WeatherUtils.getAddressFromLatLong(
                                     context,

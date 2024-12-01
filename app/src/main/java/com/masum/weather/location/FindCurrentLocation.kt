@@ -20,8 +20,8 @@ import com.google.android.gms.tasks.Task
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun FindCurrentLocation(currentLatLng1:MutableState<LatAndLong>){
-    val context= LocalContext.current
+fun FindCurrentLocation(currentLatLng1: MutableState<LatAndLong>) {
+    val context = LocalContext.current
     val isGpsLocationOn = remember {
         mutableStateOf(false)
     }
