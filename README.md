@@ -9,6 +9,7 @@
     <ul>
       <li>Temperature</li>
       <li>Location</li>
+       <li>Icon</li>
       <li>Weather conditions (e.g., sunny, cloudy, rainy)</li>
     </ul>
   </li>
