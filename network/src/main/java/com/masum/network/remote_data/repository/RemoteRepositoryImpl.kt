@@ -16,6 +16,7 @@ class RemoteRepositoryImpl(
             runCatching {
                 remoteDataSource.getWeatherData(lat, lng).body<WeatherResponse>().toDto()
             }
+
         }
 
 }

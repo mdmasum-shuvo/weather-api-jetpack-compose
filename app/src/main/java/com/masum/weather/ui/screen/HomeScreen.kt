@@ -20,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -31,23 +30,17 @@ import com.masum.network.util.WeatherUtils
 import com.masum.weather.R
 import com.masum.weather.ui.component.ImageNormal
 import com.masum.weather.ui.component.LocationFieldWithIcon
+import com.masum.weather.ui.component.PulseLoading
 import com.masum.weather.ui.component.Spacer16DPH
 import com.masum.weather.ui.component.TextView16_W400
 import com.masum.weather.ui.component.TextView24_W500
 import com.masum.weather.ui.component.TextView68_W700
 import com.masum.weather.ui.component.gradientColor
-import com.masum.weather.ui.theme.Purple40
-import com.masum.weather.ui.theme.Purple80
 import com.masum.weather.ui.theme.white_color
 import com.masum.weather.utils.AppUtils.showToast
 import com.masum.weather.viewmodel.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
-
-@Composable
-fun ShowData(content: @Composable () -> Unit, navController: NavController) {
-
-}
 
 @Composable
 fun HomeScreen(
@@ -56,7 +49,6 @@ fun HomeScreen(
     location: Location?
 ) {
     val context = LocalContext.current
-    // 23.8103, 90.4125
     val latitude = remember {
         mutableStateOf("0")
     }
@@ -72,6 +64,10 @@ fun HomeScreen(
         if (!uiState?.error.isNullOrBlank()) {
             context.showToast(uiState?.error ?: "")
         }
+    }
+
+    if (uiState?.isLoading == true) {
+        PulseLoading()
     }
     LaunchedEffect(location) {
         if (location != null && location.coord?.lat != null && location.coord?.lon != null) {
@@ -97,8 +93,7 @@ fun HomeScreen(
                 .padding(16.dp)
         ) {
             Row {
-                LocationFieldWithIcon(
-                    title = "Selected Location",
+                LocationFieldWithIcon(title = "Selected Location",
                     latitude = latitude,
                     longitude = longitude,
                     onLocationSelected = { lat, lng, isClicked ->
@@ -106,15 +101,12 @@ fun HomeScreen(
                             homeViewModel.fetchWeatherData(lat, lng)
                             homeViewModel.setLocationName(
                                 WeatherUtils.getAddressFromLatLong(
-                                    context,
-                                    latitude = lat,
-                                    longitude = lng
+                                    context, latitude = lat, longitude = lng
                                 )
                             )
                         }
 
-                    }
-                )
+                    })
             }
             Spacer16DPH()
             homeViewModel.weatherData.observeAsState().value?.let { data ->
@@ -152,8 +144,7 @@ fun HomeScreen(
                 navController.navigate(com.masum.weather.route.SearchScreen)
             }) {
                 TextView16_W400(
-                    value = context.getString(R.string.search_location),
-                    color = white_color
+                    value = context.getString(R.string.search_location), color = white_color
                 )
             }
         }
@@ -176,12 +167,10 @@ fun WeatherData(homeViewModel: HomeViewModel, data: WeatherDto) {
     ImageNormal(data.icon ?: "")
     Spacer16DPH()
     TextView68_W700(
-        value = "${data.temp ?: ""}°C",
-        color = white_color
+        value = "${data.temp ?: ""}°C", color = white_color
     )
     TextView24_W500(
-        value = data.description ?: "",
-        color = white_color
+        value = data.description ?: "", color = white_color
     )
 
 

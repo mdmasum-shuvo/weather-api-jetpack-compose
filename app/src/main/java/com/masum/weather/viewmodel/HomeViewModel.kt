@@ -35,8 +35,6 @@ class HomeViewModel(
         get() = _selectedLocationName
 
 
-    private var isBackFromSearch = true
-
     fun fetchWeatherData(lat: Double, lng: Double) {
         if (!networkCheckerRepository.checkNetworkStatus()) {
             _uiState.value = CommonUiState(error = "No Internet Available")
@@ -52,11 +50,10 @@ class HomeViewModel(
             )
             weatherApiUseCase.onSuccess {
                 _weatherData.value = it
-                isBackFromSearch = false
                 _uiState.value = CommonUiState(success = true)
             }
             weatherApiUseCase.onFailure {
-                _uiState.value = CommonUiState(error = "Something went wrong")
+                _uiState.value = CommonUiState(error = "No Weather Data found")
             }
         }
     }
