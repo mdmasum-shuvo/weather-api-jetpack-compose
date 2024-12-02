@@ -85,5 +85,10 @@ base_url=https://api.openweathermap.org/data/2.5/
   <img src="https://raw.githubusercontent.com/mdmasum-shuvo/weather-api-jetpack-compose/main/ss/Screenshot_20241202-005202-landscape.png" width="80%" height="30%">
 </p>
 
+## 🎥 App Demonstration Video
+
+Watch the demonstration video of the Weather App in action:
+
+[![Watch the video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/shorts/ceW_BYPmmxI)
 
 
